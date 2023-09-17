@@ -1,14 +1,15 @@
 # from .boroughs import list_of_london_boroughs as borough_list
+import random
 import streamlit as st
 
 # import pandas as pd
 import geopandas as gdp
 import matplotlib.pyplot as plt
 
-
 @st.cache_data
 def load_data():
     df = gdp.read_file("data/london-map/London_Borough_Excluding_MHW.shp")
+    df["crime_prediction"] = [random.uniform(0, 1) for _ in range(df.shape[0])]
     return df
 
 
@@ -63,12 +64,25 @@ st.write(f"End date = {end_date}")
 sbox = st.sidebar.multiselect("Pick London Boroughs", borough_list)
 st.title("Model results are:")
 
-# print(f"sbox = {sbox}")
+# Create a color map from green to red
+cmap = plt.get_cmap("RdYlGn_r")
+
 if len(sbox) > 0:
     # data = [borough_list.index(item) for item in sbox]
     fig, ax = plt.subplots(1, 1)
-    map_df[~map_df["NAME"].isin(sbox)].plot(ax=ax, color="lightgrey")
-    map_df[map_df["NAME"].isin(sbox)].plot(ax=ax, color="skyblue", edgecolor="black")
+    map_df.plot(
+        ax=ax,
+        color=cmap(map_df.crime_prediction),
+        edgecolor="grey",
+        alpha=0.5,
+    )
+    # make it a bit darker for the text to pop
+    map_df[map_df["NAME"].isin(sbox)].plot(
+        ax=ax,
+        color="grey",
+        edgecolor="black",
+        alpha=0.3,
+    )
     ax.set_axis_off()
     st.pyplot(fig)
     st.write(
