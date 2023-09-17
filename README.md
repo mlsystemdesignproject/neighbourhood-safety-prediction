@@ -16,7 +16,7 @@
 
 #### Outcome/Deliverable:
 
-	- [x] Stakeholders updated (wekly report)
+	- [x] Stakeholders updated (weekly report)
 
 #### Estimated Time:
 
@@ -35,7 +35,7 @@
 #### Outcome/Deliverable:
 
 	- [ ] Data ready for modeling
-	- [ ] Stakeholders updated (wekly report)
+	- [ ] Stakeholders updated (weekly report)
 
 #### Estimated Time:
 
@@ -53,8 +53,8 @@
 
 #### Outcome/Deliverable:
 
-	•	Machine learning model
-	•	Stakeholders updated (wekly report, presentation)
+	- [ ] Machine learning model
+	- [ ] Stakeholders updated (weekly report, presentation)
 
 #### Estimated Time:
 
