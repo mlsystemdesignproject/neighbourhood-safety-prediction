@@ -9,13 +9,14 @@
 
 #### Tasks:
 
-	•	Outline project workflow 
-	•	Gather data from various sources
-	•	Identify software/hardware needs 
+	- [x] Outline project workflow 
+	- [x] Write a project proposal
+	- [x] Gather data from various sources
+	- [ ] Identify software/hardware needs 
 
 #### Outcome/Deliverable:
 
-	•	Stakeholders updated
+	- [x] Stakeholders updated (wekly report)
 
 #### Estimated Time:
 
@@ -25,12 +26,16 @@
 
 #### Tasks:
 
-	•	Clean, convert, and format data
+	- [x] Clean, convert, and format data
+	- [ ] Compile summary information about the data
+	- [ ] Visualization building
+	- [ ] Compute descriptive statistics
+	- [ ] Conduct hypothesis testing
 
 #### Outcome/Deliverable:
 
-	•	Data ready for modeling
-	•	Stakeholders updated
+	- [ ] Data ready for modeling
+	- [ ] Stakeholders updated (wekly report)
 
 #### Estimated Time:
 
@@ -42,14 +47,14 @@
 
 #### Tasks:
 
-	•	Finalize modeling strategies 
-	•	Build machine learning models
-	•	Test models for accuracy
+	- [ ] Finalize modeling strategies 
+	- [ ] Build machine learning models
+	- [ ] Test models for accuracy
 
 #### Outcome/Deliverable:
 
 	•	Machine learning model
-	•	Stakeholders updated
+	•	Stakeholders updated (wekly report, presentation)
 
 #### Estimated Time:
 
@@ -59,15 +64,15 @@
 
 #### Tasks:
 
-	•	Finalize results 
-	•	Share findings with stakeholders
-	•	Incorporate feedback
+	- [ ] Finalize results 
+	- [ ] Share findings with stakeholders
+	- [ ] Incorporate feedback
 
 #### Outcome/Deliverable:
 
-	•	Visualizations
-	•	Executive summary
-	•	Results 
+	- [ ] Visualizations / web interface
+	- [ ] Executive summary
+	- [ ] Results 
 
 #### Estimated Time:
 
