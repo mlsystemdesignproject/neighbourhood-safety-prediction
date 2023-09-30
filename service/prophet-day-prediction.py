@@ -63,9 +63,10 @@ max_date = prediction_df["ds"].max()
 # st.write(f"Start date = {min_data}, date type = {type(min_data)}")
 # st.write(f"End date = {max_date}, date type = {type(max_date)}")
 # st.write(f"Search date = {search_date}, date type = {type(search_date)}")
-# ts_search_date = pd.Timestamp(search_date)
+#
 # st.write(f"TS search date = {ts_search_date}, date type = {type(ts_search_date)}")
 
+ts_search_date = pd.Timestamp(search_date)
 st.write(f"Start date = {min_data}")
 st.write(f"End date = {max_date}")
 st.write(f"Search date = {search_date}")
