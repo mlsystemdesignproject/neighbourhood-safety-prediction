@@ -11,7 +11,6 @@ import numpy as np
 def load_data():
     filepath = os.path.join("models", "dummy_prophet_model_01.joblib")
     df = joblib.load(filepath)
-    df.head()
     return df
 
 
@@ -60,23 +59,22 @@ search_date = st.sidebar.date_input("Search date", datetime.date(2022, 9, 30))
 min_data = prediction_df["ds"].min()
 max_date = prediction_df["ds"].max()
 
-st.write(f"Start date = {min_data}, date type = {type(min_data)}")
-st.write(f"End date = {max_date}, date type = {type(max_date)}")
-st.write(f"Search date = {search_date}, date type = {type(search_date)}")
-ts_search_date = pd.Timestamp(search_date)
-st.write(f"TS search date = {ts_search_date}, date type = {type(ts_search_date)}")
 
-# Вопрос: можно ли раскрасить район на карте в streamlit?
+# st.write(f"Start date = {min_data}, date type = {type(min_data)}")
+# st.write(f"End date = {max_date}, date type = {type(max_date)}")
+# st.write(f"Search date = {search_date}, date type = {type(search_date)}")
+# ts_search_date = pd.Timestamp(search_date)
+# st.write(f"TS search date = {ts_search_date}, date type = {type(ts_search_date)}")
+
+st.write(f"Start date = {min_data}")
+st.write(f"End date = {max_date}")
+st.write(f"Search date = {search_date}")
+
 
 sbox = st.sidebar.multiselect("Pick London Boroughs", borough_list)
 st.title("Model results are:")
 if min_data <= ts_search_date <= max_date:
     for borough in sbox:
-        # print([borough, f"{borough}_lower", f"{borough}_upper"])
-        # prediction_df.loc[prediction_df["ds"] == ts_search_date][
-        #     [borough, f"{borough}_lower", f"{borough}_upper"]
-        # ]
-        # st.text(f"{prediction_df.loc[search_date, :]}")
         val = np.around(
             prediction_df.loc[prediction_df["ds"] == ts_search_date][
                 [borough, f"{borough}_lower", f"{borough}_upper"]
