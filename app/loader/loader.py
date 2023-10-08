@@ -1,5 +1,3 @@
-import os
-
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -19,7 +17,7 @@ def parse_main_page():
 
 def main():
     parsed = parse_main_page()
-    for a in parsed['resources']:
+    for a in parsed["resources"]:
         print(a.get("href"))
 
 

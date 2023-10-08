@@ -1,10 +1,11 @@
 # from .boroughs import list_of_london_boroughs as borough_list
-import os
-import streamlit as st
-import joblib
-import pandas as pd
 import datetime
+import os
+
+import joblib
 import numpy as np
+import pandas as pd
+import streamlit as st
 
 
 @st.cache_data
@@ -65,7 +66,6 @@ st.write(f"End date = {max_date}, date type = {type(max_date)}")
 st.write(f"Search date = {search_date}, date type = {type(search_date)}")
 ts_search_date = pd.Timestamp(search_date)
 st.write(f"TS search date = {ts_search_date}, date type = {type(ts_search_date)}")
-
 
 
 sbox = st.sidebar.multiselect("Pick London Boroughs", borough_list)

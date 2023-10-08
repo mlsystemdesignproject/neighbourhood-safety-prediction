@@ -1,10 +1,11 @@
 # from .boroughs import list_of_london_boroughs as borough_list
 import random
-import streamlit as st
 
 # import pandas as pd
 import geopandas as gdp
 import matplotlib.pyplot as plt
+import streamlit as st
+
 
 @st.cache_data
 def load_data():
