@@ -52,10 +52,9 @@ def get_map_data(df: pd.DataFrame, date: datetime.date, variable: str) -> Dict:
             feature["properties"]["value_round"] = round(value)
         feature["properties"]["style"] = {
             "color": "black",
-            "weight": 2,
+            "weight": 1,
             "fillColor": mcolors.to_hex(cmap(norm(value))),
             "fillOpacity": 0.7,
-            "dashArray": "5, 5",
         }
 
     return base
@@ -111,13 +110,12 @@ def insert_map(df: pd.DataFrame, date: datetime.date, variable: str) -> None:
         aliases=["Borough", variable],
         localize=True,
         labels=True,
-        style="background-color: yellow;",
     )
 
     folium.GeoJson(
         map_data,
         style_function=lambda x: x["properties"]["style"],
-        highlight_function=lambda x: {"weight": 1, "color": "black"},
+        highlight_function=lambda x: {"weight": 3, "color": "black"},
         popup=popup,
     ).add_to(m)
 
