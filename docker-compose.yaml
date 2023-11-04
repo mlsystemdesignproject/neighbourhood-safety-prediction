@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  streamlit:
+    build:
+      dockerfile: docker/streamlit/Dockerfile
+    volumes:
+      - ./app/streamlit-app:/app/app
+      - ./data:/app/data
+    environment:
+      - PREDICTIONS_FILE=${PREDICTIONS_FILE:-/app/data/predictions/predictions.csv}
+    ports:
+      - "8501:8501"
+    command: streamlit run app/london-map-folium.py

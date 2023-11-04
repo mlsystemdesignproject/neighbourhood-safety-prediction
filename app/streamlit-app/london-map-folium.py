@@ -1,5 +1,6 @@
 import datetime
 import json
+import os
 from typing import Dict
 
 import folium
@@ -9,8 +10,8 @@ import pandas as pd
 import streamlit as st
 from streamlit_folium import folium_static
 
-PREDICTIONS_FILE = "data/predictions/roman_3_predictions.csv"
-GEO_FILE = "data/london-map/london_boroughs.json"
+PREDICTIONS_FILE = os.environ.get("PREDICTIONS_FILE")
+GEO_FILE = "london_boroughs.json"
 
 
 @st.cache_data
@@ -125,7 +126,8 @@ def insert_map(df: pd.DataFrame, date: datetime.date, variable: str) -> None:
 def make_layout() -> None:
     st.set_page_config(
         page_title="London safety analysis",
-        layout="wide",  # This sets the layout to wide mode
+        page_icon="🚨",
+        layout="wide",
     )
     st.title("London safety analysis")
 
