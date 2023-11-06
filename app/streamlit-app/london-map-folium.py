@@ -7,11 +7,12 @@ import folium
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import pandas as pd
+import requests
 import streamlit as st
 from streamlit_folium import folium_static
 
 PREDICTIONS_FILE = os.environ.get("PREDICTIONS_FILE")
-GEO_FILE = "london_boroughs.json"
+GEO_FILE = os.environ.get("GEO_FILE")
 
 
 @st.cache_data
@@ -25,7 +26,11 @@ def get_data() -> pd.DataFrame:
 
 @st.cache_data
 def get_map_base() -> Dict:
-    return json.load(open(GEO_FILE, "r"))
+    if GEO_FILE.startswith("http"):
+        response = requests.get(GEO_FILE)
+        return response.json()
+    else:
+        return json.load(open(GEO_FILE, "r"))
 
 
 @st.cache_data

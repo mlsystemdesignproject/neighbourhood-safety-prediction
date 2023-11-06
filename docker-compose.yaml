@@ -8,6 +8,7 @@ services:
       - ./data:/app/data
     environment:
       - PREDICTIONS_FILE=${PREDICTIONS_FILE:-/app/data/predictions/predictions.csv}
+      - GEO_FILE=${GEO_FILE:-london_boroughs.json}
     ports:
       - "8501:8501"
     command: streamlit run app/london-map-folium.py
