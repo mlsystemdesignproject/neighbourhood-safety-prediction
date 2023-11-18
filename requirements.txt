@@ -159,3 +159,4 @@ webencodings==0.5.1
 websocket-client==1.6.3
 widgetsnbextension==4.0.9
 zipp==3.16.2
+streamlit-tree-select
