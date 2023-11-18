@@ -12,7 +12,9 @@ import streamlit as st
 from streamlit_folium import folium_static
 from streamlit_tree_select import tree_select
 
-PREDICTIONS_FILE = os.environ.get("PREDICTIONS_FILE", "data/predictions/predictions.csv")
+PREDICTIONS_FILE = os.environ.get(
+    "PREDICTIONS_FILE", "data/predictions/predictions.csv"
+)
 GEO_FILE = os.environ.get("GEO_FILE", "data/london-map/london_boroughs.json")
 
 
@@ -37,7 +39,9 @@ def get_crime_type_tree(df: pd.DataFrame) -> List[Dict]:
                     "label": crime_subtype,
                     "value": crime_subtype,
                 }
-                for crime_subtype in df.loc[df.crime_type == crime_type].crime_subtype.unique()
+                for crime_subtype in df.loc[
+                    df.crime_type == crime_type
+                ].crime_subtype.unique()
             ],
         }
         for crime_type in crime_types
@@ -54,7 +58,12 @@ def get_map_base() -> Dict:
 
 
 @st.cache_data
-def get_map_data(df: pd.DataFrame, date: datetime.date, crime_types: List[str], crime_subtypes: List[str]) -> Dict:
+def get_map_data(
+    df: pd.DataFrame,
+    date: datetime.date,
+    crime_types: List[str],
+    crime_subtypes: List[str],
+) -> Dict:
     base = get_map_base()
 
     if not crime_subtypes:
@@ -62,7 +71,10 @@ def get_map_data(df: pd.DataFrame, date: datetime.date, crime_types: List[str], 
         crime_subtypes = df.crime_subtype.unique()
 
     df_selected_month = df.loc[
-        ((df.month.dt.date == date.replace(day=1)) & (df.crime_subtype.isin(crime_subtypes))),
+        (
+            (df.month.dt.date == date.replace(day=1))
+            & (df.crime_subtype.isin(crime_subtypes))
+        ),
     ]
     df_previous_period = df.loc[
         ((df.month.dt.date < date) & (df.crime_subtype.isin(crime_subtypes))),
@@ -80,20 +92,31 @@ def get_map_data(df: pd.DataFrame, date: datetime.date, crime_types: List[str], 
 
         feature["properties"]["value"] = value
         for crime_type in crime_types:
-            selected_month_value = df_selected_month.loc[
-                (df.borough == borough_name) & (df.crime_type == crime_type), "value"
-            ].sum().round(0)
-            previous_period_value = (df_previous_period.loc[
-                (df.borough == borough_name) & (df.crime_type == crime_type), "value"
-            ].sum() / len(df_previous_period.month.unique())).round(0)
+            selected_month_value = (
+                df_selected_month.loc[
+                    (df.borough == borough_name) & (df.crime_type == crime_type),
+                    "value",
+                ]
+                .sum()
+                .round(0)
+            )
+            previous_period_value = (
+                df_previous_period.loc[
+                    (df.borough == borough_name) & (df.crime_type == crime_type),
+                    "value",
+                ].sum()
+                / len(df_previous_period.month.unique())
+            ).round(0)
 
-            if selected_month_value/previous_period_value > 1.2:
+            if selected_month_value / previous_period_value > 1.2:
                 suffix = "📈"
-            elif selected_month_value/previous_period_value < 0.8:
+            elif selected_month_value / previous_period_value < 0.8:
                 suffix = "📉"
             else:
                 suffix = ""
-            feature["properties"][crime_type] = f"{selected_month_value} {suffix} ({previous_period_value})"
+            feature["properties"][
+                crime_type
+            ] = f"{selected_month_value} {suffix} ({previous_period_value})"
 
         feature["properties"]["style"] = {
             "color": "black",
@@ -146,7 +169,9 @@ def get_borough_list() -> list:
     ]
 
 
-def insert_map(df: pd.DataFrame, date: datetime.date, crime_subtypes: List[str]) -> None:
+def insert_map(
+    df: pd.DataFrame, date: datetime.date, crime_subtypes: List[str]
+) -> None:
     m = folium.Map(location=[51.5074, -0.1278], zoom_start=10)
     crime_types = list(df[df.crime_subtype.isin(crime_subtypes)].crime_type.unique())
     map_data = get_map_data(df, date, crime_types, crime_subtypes)
@@ -180,15 +205,31 @@ def make_layout() -> None:
     current_year = datetime.date.today().year
     current_month = datetime.date.today().month
 
-    years = [current_year-1, current_year, current_year+1]
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-              'November', 'December']
+    years = [current_year - 1, current_year, current_year + 1]
+    months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ]
 
     col1, col2 = st.columns(2)
-    selected_year = col1.selectbox('Select Year', years, years.index(current_year))
-    selected_month = col2.selectbox('Select Month', months, current_month-1)
+    selected_year = col1.selectbox("Select Year", years, years.index(current_year))
+    selected_month = col2.selectbox("Select Month", months, current_month - 1)
 
-    chosen_tree = tree_select(get_crime_type_tree(df), check_model="leaf", checked=list(df.crime_subtype.unique()))
+    chosen_tree = tree_select(
+        get_crime_type_tree(df),
+        check_model="leaf",
+        checked=list(df.crime_subtype.unique()),
+    )
 
     chosen_date = datetime.date(selected_year, months.index(selected_month) + 1, 1)
 
