@@ -172,7 +172,7 @@ def get_borough_list() -> list:
 def insert_map(
     df: pd.DataFrame, date: datetime.date, crime_subtypes: List[str]
 ) -> None:
-    m = folium.Map(location=[51.5074, -0.1278], zoom_start=10)
+    m = folium.Map(location=[51.5074, -0.1278], zoom_start=10, contol_scale=False)
     crime_types = list(df[df.crime_subtype.isin(crime_subtypes)].crime_type.unique())
     map_data = get_map_data(df, date, crime_types, crime_subtypes)
 
