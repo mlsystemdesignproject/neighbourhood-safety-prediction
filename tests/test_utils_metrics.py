@@ -55,24 +55,36 @@ def test_metric_wmape_03():
 
 
 def test_metric_smape_04():
+    y1 = np.array([0, 0, 0])
+    y2 = np.array([1, 0, 1])
+    assert np.round(smape(y1, y2), 2) == 66.67
+
+
+def test_metric_wmape_04():
+    y1 = np.array([0, 0, 0])
+    y2 = np.array([1, 0, 1])
+    assert np.round(wmape(y1, y2), 2) == 200
+
+
+def test_metric_smape_05():
     y1 = np.array([1, 2, 1])
     y2 = np.array([1, 1, 1])
     assert np.round(smape(y1, y2), 2) == 16.67
 
 
-def test_metric_wmape_04():
+def test_metric_wmape_05():
     y1 = np.array([1, 2, 1])
     y2 = np.array([1, 1, 1])
     assert np.round(wmape(y1, y2), 2) == 25
 
 
-def test_metric_smape_05():
+def test_metric_smape_06():
     y1 = np.array([1, 1, 1])
     y2 = np.array([1, 2, 1])
     assert np.round(smape(y1, y2), 2) == 16.67
 
 
-def test_metric_wmape_05():
+def test_metric_wmape_06():
     y1 = np.array([1, 1, 1])
     y2 = np.array([1, 2, 1])
     assert np.round(wmape(y1, y2), 2) == 33.33
