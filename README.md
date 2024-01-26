@@ -9,14 +9,14 @@
 
 #### Tasks:
 
-	- [x] Outline project workflow 
-	- [x] Write a project proposal
-	- [x] Gather data from various sources
-	- [ ] Identify software/hardware needs 
+	- ✅ Outline project workflow 
+	- ✅ Write a project proposal
+	- ✅ Gather data from various sources
+	- ✅ Identify software/hardware needs 
 
 #### Outcome/Deliverable:
 
-	- [x] Stakeholders updated (weekly report)
+	- ✅ Stakeholders updated (weekly report)
 
 #### Estimated Time:
 
@@ -26,16 +26,16 @@
 
 #### Tasks:
 
-	- [x] Clean, convert, and format data
-	- [ ] Compile summary information about the data
-	- [ ] Visualization building
-	- [ ] Compute descriptive statistics
-	- [ ] Conduct hypothesis testing
+	- ✅ Clean, convert, and format data
+	- ✅ Compile summary information about the data
+	- 🔛 Visualization building
+	- 🔛 Compute descriptive statistics
+	- 🔛 Conduct hypothesis testing
 
 #### Outcome/Deliverable:
 
-	- [ ] Data ready for modeling
-	- [ ] Stakeholders updated (weekly report)
+	- 🔛 Data ready for modeling
+	- 🔛 Stakeholders updated (weekly report)
 
 #### Estimated Time:
 
